@@ -14,14 +14,9 @@ public class MainController {
 
     @PostMapping(path="/add")
     public @ResponseBody String addNewClue (
-        @RequestBody Clue clue
+        @RequestParam String clue, @RequestParam String answer
     ) {
-        String hello = "we don't know";
-        if (clue.getAnswer() == null) {
-            hello = "it was null";
-        } else {
-            hello = clue.getAnswer();
-        }
-        return hello;
+
+        return "hello";
     }
 }

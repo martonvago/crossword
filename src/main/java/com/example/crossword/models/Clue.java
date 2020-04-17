@@ -12,7 +12,7 @@ public class Clue {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
 
-    private String clueText;
+    private String clue;
 
     private String answer;
 
@@ -32,12 +32,12 @@ public class Clue {
         this.id = id;
     }
 
-    public String getClueText() {
-        return clueText;
+    public String getClue() {
+        return clue;
     }
 
-    public void setClueText(String clueText) {
-        this.clueText = clueText;
+    public void setClue(String clue) {
+        this.clue = clue;
     }
 
     public String getAnswer() {
