@@ -14,6 +14,8 @@ public class Clue {
 
     private String clueText;
 
+    private String answer;
+
     private String topic;
 
     private String style;
@@ -36,6 +38,14 @@ public class Clue {
 
     public void setClueText(String clueText) {
         this.clueText = clueText;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 
     public String getTopic() {
