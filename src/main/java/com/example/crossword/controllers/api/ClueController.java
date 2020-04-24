@@ -4,14 +4,11 @@ import com.example.crossword.exceptions.ClueNotFoundException;
 import com.example.crossword.models.Clue;
 import com.example.crossword.repositories.ClueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path="/api/clue")
-class ClueController {
+public class ClueController {
     @Autowired
     private ClueRepository clueRepository;
 
@@ -20,4 +17,10 @@ class ClueController {
         return clueRepository.findById(id)
                 .orElseThrow(() -> new ClueNotFoundException(id));
     }
+
+    @PostMapping
+    public void postClue(@RequestBody Clue clue) {
+        clueRepository.save(clue);
+    }
+
 }
