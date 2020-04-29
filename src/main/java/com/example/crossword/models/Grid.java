@@ -5,16 +5,24 @@ import java.util.stream.Stream;
 public class Grid {
     private int numRows;
     private int numCols;
-    private LetterSquare[][] grid;
+    private LetterSquare[][] letterSquares;
 
     public Grid(int numRows, int numCols) {
         this.numRows = numRows;
         this.numCols = numCols;
-        grid = generateEmptyGrid();
+        letterSquares = generateEmptyGrid();
     }
 
-    public LetterSquare[][] getGrid() {
-        return grid;
+    public int getNumRows() {
+        return numRows;
+    }
+
+    public int getNumCols() {
+        return numCols;
+    }
+
+    public LetterSquare[][] getLetterSquares() {
+        return letterSquares;
     }
 
     private LetterSquare[][] generateEmptyGrid() {

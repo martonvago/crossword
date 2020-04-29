@@ -9,16 +9,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class GridTests {
+    private static final int numRows = 20;
+    private static final int numCols = 20;
+
     private Grid grid;
 
     @BeforeEach
     public void setUp() {
-        grid = new Grid(20, 40);
+        grid = new Grid(numRows, numCols);
     }
 
     @Test
     public void constructorCreatesGridOfEmptySquares() {
-        for (LetterSquare[] row : grid.getGrid()) {
+        for (LetterSquare[] row : grid.getLetterSquares()) {
             for (LetterSquare sq : row) {
                 assertFalse(sq.hasLetter());
             }
@@ -26,8 +29,11 @@ public class GridTests {
     }
 
     @Test
-    public void constructorCreatesGridWithCorrectDimensions() {
-        assertEquals(20, grid.getGrid().length);
-        assertEquals(40, grid.getGrid()[0].length);
+    public void constructorCreatesGridWithSpecifiedDimensions() {
+        assertEquals(numRows, grid.getLetterSquares().length);
+        assertEquals(numRows, grid.getNumRows());
+
+        assertEquals(numCols, grid.getLetterSquares()[0].length);
+        assertEquals(numCols, grid.getNumCols());
     }
 }

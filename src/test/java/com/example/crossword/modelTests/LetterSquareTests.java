@@ -1,6 +1,6 @@
 package com.example.crossword.modelTests;
 
-import com.example.crossword.exceptions.InvalidLetterException;
+import com.example.crossword.exceptions.gridExceptions.InvalidLetterException;
 import com.example.crossword.models.LetterSquare;
 import org.junit.jupiter.api.Test;
 
