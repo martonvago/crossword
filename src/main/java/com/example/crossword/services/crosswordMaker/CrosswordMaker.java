@@ -9,14 +9,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CrosswordMaker {
+    private Grid grid;
     private GridManager gridManager;
     private List<InsertedClue> clueList;
     private ClueFinder clueFinder;
 
     public CrosswordMaker(int gridRows, int gridColumns) {
-        gridManager = new GridManager(new Grid(gridRows, gridColumns));
+        grid = new Grid(gridRows, gridColumns);
+        gridManager = new GridManager(grid);
         clueList = new ArrayList<>();
         clueFinder = new ClueFinder(gridManager);
+    }
+
+    public Grid getGrid() {
+        return grid;
     }
 
     public void insertClue(Clue clue, GridCoordinates startCoords, ClueDirection dir) throws WordInsertException {
