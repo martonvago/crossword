@@ -6,11 +6,11 @@ import com.example.crossword.models.Grid;
 import com.example.crossword.models.GridCoordinates;
 import com.example.crossword.models.LetterSquare;
 
-public class GridSquareSetter {
+public class WordInsertHelper {
     private Grid grid;
     private GridTraversalHelper traversalHelper;
 
-    public GridSquareSetter(Grid grid, GridTraversalHelper traversalHelper) {
+    public WordInsertHelper(Grid grid, GridTraversalHelper traversalHelper) {
         this.grid = grid;
         this.traversalHelper = traversalHelper;
     }
@@ -22,11 +22,8 @@ public class GridSquareSetter {
                 sq.setLetter(word.charAt(i));
             }
         }
-        catch(CoordinatesOutOfBoundsException e) {
-            throw new WordExceedsGridBoundariesException();
-        }
-        catch(InvalidLetterException e) {
-            throw new InvalidWordException();
+        catch(Exception e) {
+            throw new WordInsertException();
         }
     }
 }

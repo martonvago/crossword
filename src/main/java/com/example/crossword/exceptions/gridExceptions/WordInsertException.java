@@ -1,4 +1,4 @@
 package com.example.crossword.exceptions.gridExceptions;
 
-public abstract class WordInsertException extends Exception {
+public class WordInsertException extends Exception {
 }

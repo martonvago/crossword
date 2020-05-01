@@ -27,50 +27,71 @@ public class GridTraversalHelper {
         return grid.getLetterSquares()[coords.getRow()][coords.getColumn()];
     }
 
-    public LetterSquare getRelativeSquareByClueDirection(GridCoordinates coords, ClueDirection direction, int distance) throws CoordinatesOutOfBoundsException {
-        LetterSquare sq = null;
+    public LetterSquare getRelativeSquareByClueDirection(GridCoordinates coords, ClueDirection dir, int distance) throws CoordinatesOutOfBoundsException {
+        return getSquareAt(GridCoordinatesHelper.getRelativeCoordinatesByClueDirection(coords, dir, distance));
+    }
 
-        switch (direction) {
-            case Across:
-                sq = getSquareRightBy(coords, distance);
-                break;
-            case Down:
-                sq = getSquareBelowBy(coords, distance);
-                break;
+    public boolean squareIsOccupied(GridCoordinates coords) throws CoordinatesOutOfBoundsException {
+        return getSquareAt(coords).hasLetter();
+    }
+
+    public LetterSquare getNeighbouringSquareAbove(GridCoordinates coords) throws CoordinatesOutOfBoundsException {
+        return getSquareAt(GridCoordinatesHelper.above(coords));
+    }
+
+    public LetterSquare getNeighbouringSquareRight(GridCoordinates coords) throws CoordinatesOutOfBoundsException {
+        return getSquareAt(GridCoordinatesHelper.right(coords));
+    }
+
+    public LetterSquare getNeighbouringSquareBelow(GridCoordinates coords) throws CoordinatesOutOfBoundsException {
+        return getSquareAt(GridCoordinatesHelper.below(coords));
+    }
+
+    public LetterSquare getNeighbouringSquareLeft(GridCoordinates coords) throws CoordinatesOutOfBoundsException {
+        return getSquareAt(GridCoordinatesHelper.left(coords));
+    }
+
+    public boolean neighbouringSquareAboveIsOccupied(GridCoordinates coords) {
+        try {
+            return getNeighbouringSquareAbove(coords).hasLetter();
         }
-
-        return sq;
+        catch (CoordinatesOutOfBoundsException e) {
+            return false;
+        }
     }
 
-    public LetterSquare getSquareAboveBy(GridCoordinates coords, int distance) throws CoordinatesOutOfBoundsException {
-        return getSquareAt(GridCoordinatesHelper.aboveBy(coords, distance));
+    public boolean neighbouringSquareRightIsOccupied(GridCoordinates coords) {
+        try {
+            return getNeighbouringSquareRight(coords).hasLetter();
+        }
+        catch (CoordinatesOutOfBoundsException e) {
+            return false;
+        }
     }
 
-    public LetterSquare getSquareRightBy(GridCoordinates coords, int distance) throws CoordinatesOutOfBoundsException {
-        return getSquareAt(GridCoordinatesHelper.rightBy(coords, distance));
+    public boolean neighbouringSquareBelowIsOccupied(GridCoordinates coords) {
+        try {
+            return getNeighbouringSquareBelow(coords).hasLetter();
+        }
+        catch (CoordinatesOutOfBoundsException e) {
+            return false;
+        }
     }
 
-    public LetterSquare getSquareBelowBy(GridCoordinates coords, int distance) throws CoordinatesOutOfBoundsException {
-        return getSquareAt(GridCoordinatesHelper.belowBy(coords, distance));
+    public boolean neighbouringSquareLeftIsOccupied(GridCoordinates coords) {
+        try {
+            return getNeighbouringSquareLeft(coords).hasLetter();
+        }
+        catch (CoordinatesOutOfBoundsException e) {
+            return false;
+        }
     }
 
-    public LetterSquare getSquareLeftBy(GridCoordinates coords, int distance) throws CoordinatesOutOfBoundsException {
-        return getSquareAt(GridCoordinatesHelper.leftBy(coords, distance));
+    public boolean anyHorizontalNeighbouringSquaresAreOccupied(GridCoordinates coords) {
+        return neighbouringSquareLeftIsOccupied(coords) || neighbouringSquareRightIsOccupied(coords);
     }
 
-    public boolean gridHasSquareAbove(GridCoordinates coords) {
-        return coordinatesAreInBounds(GridCoordinatesHelper.aboveBy(coords, 1));
-    }
-
-    public boolean gridHasSquareRight(GridCoordinates coords) {
-        return coordinatesAreInBounds(GridCoordinatesHelper.rightBy(coords, 1));
-    }
-
-    public boolean gridHasSquareBelow(GridCoordinates coords) {
-        return coordinatesAreInBounds(GridCoordinatesHelper.belowBy(coords, 1));
-    }
-
-    public boolean gridHasSquareLeft(GridCoordinates coords) {
-        return coordinatesAreInBounds(GridCoordinatesHelper.leftBy(coords, 1));
+    public boolean anyVerticalNeighbouringSquaresAreOccupied(GridCoordinates coords) {
+        return neighbouringSquareAboveIsOccupied(coords) || neighbouringSquareBelowIsOccupied(coords);
     }
 }
