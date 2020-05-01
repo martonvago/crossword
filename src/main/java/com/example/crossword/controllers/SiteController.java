@@ -1,7 +1,10 @@
 package com.example.crossword.controllers;
 
 import com.example.crossword.controllers.api.ClueController;
+import com.example.crossword.exceptions.gridExceptions.InvalidLetterException;
 import com.example.crossword.models.Clue;
+import com.example.crossword.models.Grid;
+import com.example.crossword.services.crosswordMaker.CrosswordMaker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,5 +25,20 @@ public class SiteController {
     public String addNewClue (@ModelAttribute Clue clue) {
         clueController.postClue(clue);
         return "redirect:clue-submitted.html";
+    }
+
+    @GetMapping("/build-a-crossword")
+    public String buildACrossword(Model model) {
+        Grid grid = new CrosswordMaker(5, 5).getGrid();
+        try {
+            grid.getLetterSquares()[1][3].setLetter('A');
+            grid.getLetterSquares()[2][3].setLetter('B');
+            grid.getLetterSquares()[3][4].setLetter('C');
+        } catch (InvalidLetterException e) {
+            e.printStackTrace();
+        }
+        model.addAttribute("grid", grid);
+
+        return "build-a-crossword";
     }
 }

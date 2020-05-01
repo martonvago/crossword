@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Build a Crossword</title>
+    <link th:href="@{/css/build-a-crossword.css}" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="crossword" th:style="'grid-template-columns: repeat(' + ${grid.getNumCols()} + ', 1fr); grid-template-rows: repeat('+ ${grid.getNumRows()} + ', 1fr);'">
+        <th:block th:each="row : ${grid.getLetterSquares()}">
+            <div class="square" th:each="square : ${row}">
+                <span class="number" th:text="${5}"></span>
+                <span th:text="${square.getLetter()}"></span>
+            </div>
+        </th:block>
+    </div>
+</body>
+</html>
