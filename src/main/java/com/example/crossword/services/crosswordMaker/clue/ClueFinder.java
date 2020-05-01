@@ -1,10 +1,10 @@
-package com.example.crossword.services.clue;
+package com.example.crossword.services.crosswordMaker.clue;
 
 import com.example.crossword.models.Clue;
 import com.example.crossword.models.ClueDirection;
 import com.example.crossword.models.GridCoordinates;
 import com.example.crossword.repositories.ClueRepository;
-import com.example.crossword.services.grid.GridManager;
+import com.example.crossword.services.crosswordMaker.grid.GridManager;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;

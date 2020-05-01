@@ -1,4 +1,4 @@
-package com.example.crossword.services.grid;
+package com.example.crossword.services.crosswordMaker.grid;
 
 import com.example.crossword.models.ClueDirection;
 import com.example.crossword.models.GridCoordinates;

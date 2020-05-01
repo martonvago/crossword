@@ -1,9 +1,9 @@
-package com.example.crossword.services;
+package com.example.crossword.services.crosswordMaker;
 
 import com.example.crossword.exceptions.gridExceptions.WordInsertException;
 import com.example.crossword.models.*;
-import com.example.crossword.services.clue.ClueFinder;
-import com.example.crossword.services.grid.GridManager;
+import com.example.crossword.services.crosswordMaker.clue.ClueFinder;
+import com.example.crossword.services.crosswordMaker.grid.GridManager;
 
 import java.util.ArrayList;
 import java.util.List;
