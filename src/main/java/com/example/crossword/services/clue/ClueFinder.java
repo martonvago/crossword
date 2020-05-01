@@ -10,17 +10,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClueFitSearcher {
+public class ClueFinder {
     @Autowired
     private ClueRepository clueRepository;
 
     private GridManager gridManager;
 
-    public ClueFitSearcher(GridManager gridManager) {
+    public ClueFinder(GridManager gridManager) {
         this.gridManager = gridManager;
     }
 
-    public List<Clue> getCluesThatCanBeInsertedAt(GridCoordinates startCoords, ClueDirection dir) {
+    public List<Clue> findCluesThatCanBeInserted(GridCoordinates startCoords, ClueDirection dir) {
         List<Clue> clues = new ArrayList<Clue>();
 
         for (Clue clue : clueRepository.findAll()) {
