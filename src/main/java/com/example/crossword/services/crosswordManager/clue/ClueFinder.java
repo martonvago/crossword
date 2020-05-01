@@ -1,10 +1,10 @@
-package com.example.crossword.services.crosswordMaker.clue;
+package com.example.crossword.services.crosswordManager.clue;
 
 import com.example.crossword.models.Clue;
 import com.example.crossword.models.ClueDirection;
 import com.example.crossword.models.GridCoordinates;
 import com.example.crossword.repositories.ClueRepository;
-import com.example.crossword.services.crosswordMaker.grid.GridManager;
+import com.example.crossword.services.crosswordManager.grid.GridManager;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
@@ -17,6 +17,11 @@ public class ClueFinder {
     private GridManager gridManager;
 
     public ClueFinder(GridManager gridManager) {
+        this.gridManager = gridManager;
+    }
+
+    public ClueFinder(ClueRepository clueRepository, GridManager gridManager) {
+        this.clueRepository = clueRepository;
         this.gridManager = gridManager;
     }
 

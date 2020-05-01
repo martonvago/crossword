@@ -4,7 +4,7 @@ import com.example.crossword.exceptions.gridExceptions.WordInsertException;
 import com.example.crossword.models.ClueDirection;
 import com.example.crossword.models.Grid;
 import com.example.crossword.models.GridCoordinates;
-import com.example.crossword.services.crosswordMaker.grid.GridManager;
+import com.example.crossword.services.crosswordManager.grid.GridManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
