@@ -1,9 +1,9 @@
 package com.example.crossword.serviceTests.clue;
 
-import com.example.crossword.exceptions.gridExceptions.WordInsertException;
+import com.example.crossword.exceptions.crosswordManagerExceptions.WordInsertException;
 import com.example.crossword.models.*;
 import com.example.crossword.repositories.ClueRepository;
-import com.example.crossword.services.crosswordManager.CrosswordManager;
+import com.example.crossword.services.crosswordManager.CrosswordInsertManager;
 import com.example.crossword.services.crosswordManager.clue.ClueFinder;
 import com.example.crossword.services.crosswordManager.grid.GridManager;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,7 +20,7 @@ import static org.mockito.Mockito.when;
 
 public class ClueFinderTests {
     private ClueFinder clueFinder;
-    private CrosswordManager crosswordManager;
+    private GridManager gridManager;
 
     private Clue alpha;
     private Clue bravo;
@@ -33,11 +33,10 @@ public class ClueFinderTests {
         MockitoAnnotations.initMocks(this);
 
         Grid grid = new Grid(10, 10);
-        GridManager gridManager = new GridManager(grid);
         ClueRepository clueRepository = mock(ClueRepository.class);
 
+        gridManager = new GridManager(grid);
         clueFinder = new ClueFinder(clueRepository, gridManager);
-        crosswordManager = new CrosswordManager(grid, gridManager, new ArrayList<>(), clueFinder);
 
         alpha = dummyClue("ALPHA");
         bravo = dummyClue("BRAVO");
@@ -66,7 +65,7 @@ public class ClueFinderTests {
         GridCoordinates coords1 = new GridCoordinates(5, 0);
         ClueDirection dir1 = ClueDirection.Across;
 
-        crosswordManager.insertClue(alpha, coords1, dir1);
+        gridManager.insertWord(alpha.getAnswer(), coords1, dir1);
 
         GridCoordinates coords2 = new GridCoordinates(3, 0);
         ClueDirection dir2 = ClueDirection.Down;

@@ -1,6 +1,6 @@
 package com.example.crossword.models;
 
-import com.example.crossword.exceptions.gridExceptions.InvalidLetterException;
+import com.example.crossword.exceptions.crosswordManagerExceptions.InvalidLetterException;
 import org.springframework.lang.NonNull;
 
 public class LetterSquare {

@@ -1,6 +1,6 @@
 package com.example.crossword.services.crosswordManager.grid;
 
-import com.example.crossword.exceptions.gridExceptions.*;
+import com.example.crossword.exceptions.crosswordManagerExceptions.*;
 import com.example.crossword.models.ClueDirection;
 import com.example.crossword.models.Grid;
 import com.example.crossword.models.GridCoordinates;
