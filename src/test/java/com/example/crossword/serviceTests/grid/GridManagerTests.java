@@ -63,7 +63,7 @@ public class GridManagerTests {
     }
 
     @Test
-    public void cannotAddWordIfOIntersectingLettersDoNotMatch() throws WordInsertException {
+    public void cannotAddWordIfIntersectingLettersDoNotMatch() throws WordInsertException {
         String word1 = "ONE";
         GridCoordinates startCoords1 = new GridCoordinates(0, 2);
         ClueDirection dir1 = ClueDirection.Down;

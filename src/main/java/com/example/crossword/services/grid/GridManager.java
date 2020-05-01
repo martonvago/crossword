@@ -26,7 +26,6 @@ public class GridManager {
         if (!canInsertWord(word, startCoords, direction)) {
             throw new WordInsertException();
         }
-
         wordInsertHelper.insertWord(word, startCoords, direction);
     }
 }
