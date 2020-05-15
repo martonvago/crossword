@@ -1,15 +1,21 @@
 package com.example.crossword.models;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name= "crossword")
 public class Crossword {
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
-
-    private List<InsertedClue> insertedClues;
 
     private Integer numRows;
 
     private Integer numColumns;
+
+    @OneToMany(cascade= CascadeType.ALL)
+    private List<InsertedClue> insertedClues;
 
     public Integer getId() {
         return id;
@@ -17,14 +23,6 @@ public class Crossword {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public List<InsertedClue> getInsertedClues() {
-        return insertedClues;
-    }
-
-    public void setInsertedClues(List<InsertedClue> insertedClues) {
-        this.insertedClues = insertedClues;
     }
 
     public Integer getNumRows() {
@@ -41,5 +39,13 @@ public class Crossword {
 
     public void setNumColumns(Integer numColumns) {
         this.numColumns = numColumns;
+    }
+
+    public List<InsertedClue> getInsertedClues() {
+        return insertedClues;
+    }
+
+    public void setInsertedClues(List<InsertedClue> insertedClues) {
+        this.insertedClues = insertedClues;
     }
 }

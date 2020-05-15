@@ -1,37 +1,87 @@
 package com.example.crossword.models;
 
-import com.example.crossword.entities.ClueEntity;
-import com.example.crossword.entities.InsertedClueEntity;
+import javax.persistence.*;
 
+@Entity
+@Table(name= "insertedClue")
 public class InsertedClue {
-    private ClueEntity clue;
-    private GridCoordinates startCoordinates;
-    private ClueDirection direction;
+    public InsertedClue() {
+    }
 
-    public InsertedClue(ClueEntity clue, GridCoordinates startCoordinates, ClueDirection direction) {
+    public InsertedClue(Clue clue, Crossword crossword, GridCoordinates startCoords, ClueDirection direction) {
         this.clue = clue;
-        this.startCoordinates = startCoordinates;
+        this.crossword = crossword;
+        this.row = startCoords.getRow();
+        this.col = startCoords.getColumn();
         this.direction = direction;
     }
 
-    public InsertedClue(InsertedClueEntity insertedClueEntity) {
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Integer id;
 
+    @ManyToOne
+    @JoinColumn(name= "clue_id")
+    private Clue clue;
+
+    @ManyToOne
+    @JoinColumn(name= "crossword_id")
+    private Crossword crossword;
+
+    private Integer row;
+
+    private Integer col;
+
+    @Enumerated(EnumType.ORDINAL)
+    private ClueDirection direction;
+
+    public Integer getId() {
+        return id;
     }
 
-    public ClueEntity getClue() {
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Clue getClue() {
         return clue;
     }
 
-    public void setClue(ClueEntity clue) {
+    public void setClue(Clue clue) {
         this.clue = clue;
     }
 
+    public Crossword getCrossword() {
+        return crossword;
+    }
+
+    public void setCrossword(Crossword crossword) {
+        this.crossword = crossword;
+    }
+
     public GridCoordinates getStartCoordinates() {
-        return startCoordinates;
+        return new GridCoordinates(row, col);
     }
 
     public void setStartCoordinates(GridCoordinates startCoordinates) {
-        this.startCoordinates = startCoordinates;
+        this.row = startCoordinates.getRow();
+        this.col = startCoordinates.getColumn();
+    }
+
+    public Integer getRow() {
+        return row;
+    }
+
+    public void setRow(Integer row) {
+        this.row = row;
+    }
+
+    public Integer getCol() {
+        return col;
+    }
+
+    public void setCol(Integer col) {
+        this.col = col;
     }
 
     public ClueDirection getDirection() {

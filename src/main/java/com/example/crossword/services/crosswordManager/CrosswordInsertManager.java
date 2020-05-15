@@ -1,6 +1,6 @@
 package com.example.crossword.services.crosswordManager;
 
-import com.example.crossword.entities.ClueEntity;
+import com.example.crossword.models.Clue;
 import com.example.crossword.exceptions.crosswordManagerExceptions.CannotLoadCrosswordException;
 import com.example.crossword.exceptions.crosswordManagerExceptions.WordInsertException;
 import com.example.crossword.models.*;
@@ -59,12 +59,12 @@ public class CrosswordInsertManager {
         return grid;
     }
 
-    public void insertClue(ClueEntity clue, GridCoordinates startCoords, ClueDirection dir) throws WordInsertException {
+    public void insertClue(Clue clue, GridCoordinates startCoords, ClueDirection dir) throws WordInsertException {
         gridManager.insertWord(clue.getAnswer(), startCoords, dir);
-        crossword.getInsertedClues().add(new InsertedClue(clue, startCoords, dir));
+        crossword.getInsertedClues().add(new InsertedClue(clue, this.crossword, startCoords, dir));
     }
 
-    public List<ClueEntity> findCluesThatCanBeInserted(GridCoordinates startCoords, ClueDirection dir) {
+    public List<Clue> findCluesThatCanBeInserted(GridCoordinates startCoords, ClueDirection dir) {
         return clueFinder.findCluesThatCanBeInserted(startCoords, dir);
     }
 

@@ -2,7 +2,7 @@ package com.example.crossword.controllers;
 
 import com.example.crossword.controllers.api.ClueController;
 import com.example.crossword.exceptions.crosswordManagerExceptions.InvalidLetterException;
-import com.example.crossword.entities.ClueEntity;
+import com.example.crossword.models.Clue;
 import com.example.crossword.models.Grid;
 import com.example.crossword.services.crosswordManager.CrosswordInsertManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +17,12 @@ public class SiteController {
 
     @GetMapping("/clue")
     public String addClueForm(Model model) {
-        model.addAttribute("clue", new ClueEntity());
+        model.addAttribute("clue", new Clue());
         return "redirect:add-clue.html";
     }
 
     @PostMapping("/clue")
-    public String addNewClue (@ModelAttribute ClueEntity clue) {
+    public String addNewClue (@ModelAttribute Clue clue) {
         clueController.postClue(clue);
         return "redirect:clue-submitted.html";
     }
