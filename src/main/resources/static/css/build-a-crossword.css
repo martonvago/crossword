@@ -5,8 +5,13 @@
     border: 0;
 }
 
+body {
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
 .crossword {
-    margin: 30px auto;
     display: grid;
     width: 500px;
     height: 500px;
@@ -31,4 +36,16 @@
     left: 0;
     padding: 2% 0 0 4%;
     font-size: 14px;
+}
+
+.inserted-clues {
+    display: flex;
+}
+
+.across {
+    margin-right: 10px;
+}
+
+.down {
+    margin-left: 10px;
 }

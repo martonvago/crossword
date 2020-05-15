@@ -5,6 +5,7 @@ import com.example.crossword.exceptions.crosswordManagerExceptions.InvalidLetter
 import com.example.crossword.models.Clue;
 import com.example.crossword.models.Grid;
 import com.example.crossword.services.crosswordManager.CrosswordInsertManager;
+import com.example.crossword.viewModels.CrosswordViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,8 +38,18 @@ public class SiteController {
         } catch (InvalidLetterException e) {
             e.printStackTrace();
         }
-        model.addAttribute("grid", grid);
+        CrosswordViewModel crosswordViewModel = new CrosswordViewModel(grid);
+        model.addAttribute("crossword", crosswordViewModel);
 
         return "build-a-crossword";
     }
+
+//    @GetMapping("/crossword/{id}")
+//    public String editCrossword(Model model, @PathVariable("id") String id) {
+//
+//        CrosswordViewModel crosswordViewModel = getCrosswordFromDatabaseWithId(id);
+//        model.addAttribute("crossword", crosswordViewModel);
+//
+//        return "build-a-crossword";
+//    }
 }

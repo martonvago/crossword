@@ -7,13 +7,26 @@
 </head>
 
 <body>
-    <div class="crossword" th:style="'grid-template-columns: repeat(' + ${grid.getNumCols()} + ', 1fr); grid-template-rows: repeat('+ ${grid.getNumRows()} + ', 1fr);'">
-        <th:block th:each="row : ${grid.getLetterSquares()}">
-            <div class="square" th:each="square : ${row}">
-                <span class="number" th:text="${5}"></span>
-                <span th:text="${square.getLetter()}"></span>
-            </div>
-        </th:block>
+    <div class="crossword" th:style="'grid-template-columns: repeat(' + ${crossword.getNumCols()} + ', 1fr); grid-template-rows: repeat('+ ${crossword.getNumRows()} + ', 1fr);'">
+        <div class="square" th:each="square : ${crossword.getLetterSquares()}">
+            <span class="number" th:text="${square.getClueNum()}"></span>
+            <span th:text="${square.getLetter()}"></span>
+        </div>
+    </div>
+
+    <div class="inserted-clues">
+        <div class="across">
+            <p class="inserted-clue" th:each="clue : ${crossword.getCluesAcross()}">
+                <span class="inserted-clue-number" th:text="${clue.getClueNum()}"></span>
+                <span class="inserted-clue-hint" th:text="${clue.getHint()}"></span>
+            </p>
+        </div>
+        <div class="down">
+            <p class="inserted-clue" th:each="clue : ${crossword.getCluesDown()}">
+                <span class="inserted-clue-number" th:text="${clue.getClueNum()}"></span>
+                <span class="inserted-clue-hint" th:text="${clue.getHint()}"></span>
+            </p>
+        </div>
     </div>
 </body>
 </html>
