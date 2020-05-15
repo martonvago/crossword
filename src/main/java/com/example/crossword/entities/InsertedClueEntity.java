@@ -19,7 +19,7 @@ public class InsertedClueEntity {
 
     private Integer row;
 
-    private Integer column;
+    private Integer col;
 
     private Integer direction;
 
@@ -55,12 +55,12 @@ public class InsertedClueEntity {
         this.row = row;
     }
 
-    public Integer getColumn() {
-        return column;
+    public Integer getCol() {
+        return col;
     }
 
-    public void setColumn(Integer column) {
-        this.column = column;
+    public void setCol(Integer col) {
+        this.col = col;
     }
 
     public Integer getDirection() {
