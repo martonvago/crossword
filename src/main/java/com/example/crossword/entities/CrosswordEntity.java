@@ -1,11 +1,14 @@
-package com.example.crossword.models;
+package com.example.crossword.entities;
 
+import javax.persistence.*;
 import java.util.List;
 
-public class Crossword {
+@Entity
+@Table(name= "crossword")
+public class CrosswordEntity {
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
-
-    private List<InsertedClue> insertedClues;
 
     private Integer numRows;
 
@@ -17,14 +20,6 @@ public class Crossword {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public List<InsertedClue> getInsertedClues() {
-        return insertedClues;
-    }
-
-    public void setInsertedClues(List<InsertedClue> insertedClues) {
-        this.insertedClues = insertedClues;
     }
 
     public Integer getNumRows() {

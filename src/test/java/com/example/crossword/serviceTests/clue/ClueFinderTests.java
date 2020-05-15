@@ -1,9 +1,9 @@
 package com.example.crossword.serviceTests.clue;
 
+import com.example.crossword.entities.ClueEntity;
 import com.example.crossword.exceptions.crosswordManagerExceptions.WordInsertException;
 import com.example.crossword.models.*;
 import com.example.crossword.repositories.ClueRepository;
-import com.example.crossword.services.crosswordManager.CrosswordInsertManager;
 import com.example.crossword.services.crosswordManager.clue.ClueFinder;
 import com.example.crossword.services.crosswordManager.grid.GridManager;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,11 +22,11 @@ public class ClueFinderTests {
     private ClueFinder clueFinder;
     private GridManager gridManager;
 
-    private Clue alpha;
-    private Clue bravo;
-    private Clue charlie;
-    private Clue delta;
-    private Clue echo;
+    private ClueEntity alpha;
+    private ClueEntity bravo;
+    private ClueEntity charlie;
+    private ClueEntity delta;
+    private ClueEntity echo;
 
     @BeforeEach
     public void setUp() {
@@ -54,8 +54,8 @@ public class ClueFinderTests {
         GridCoordinates coords = new GridCoordinates(0, 0);
         ClueDirection dir = ClueDirection.Across;
 
-        List<Clue> expected = new ArrayList<>(Arrays.asList(alpha, bravo, charlie, delta, echo));
-        List<Clue> actual = clueFinder.findCluesThatCanBeInserted(coords, dir);
+        List<ClueEntity> expected = new ArrayList<>(Arrays.asList(alpha, bravo, charlie, delta, echo));
+        List<ClueEntity> actual = clueFinder.findCluesThatCanBeInserted(coords, dir);
 
         assertEquals(expected, actual);
     }
@@ -70,8 +70,8 @@ public class ClueFinderTests {
         GridCoordinates coords2 = new GridCoordinates(3, 0);
         ClueDirection dir2 = ClueDirection.Down;
 
-        List<Clue> expected = new ArrayList<>(Arrays.asList(bravo, charlie));
-        List<Clue> actual = clueFinder.findCluesThatCanBeInserted(coords2, dir2);
+        List<ClueEntity> expected = new ArrayList<>(Arrays.asList(bravo, charlie));
+        List<ClueEntity> actual = clueFinder.findCluesThatCanBeInserted(coords2, dir2);
 
         assertEquals(expected, actual);
     }
@@ -81,14 +81,14 @@ public class ClueFinderTests {
         GridCoordinates coords = new GridCoordinates(0, 6);
         ClueDirection dir = ClueDirection.Across;
 
-        List<Clue> expected = new ArrayList<>(Arrays.asList(echo));
-        List<Clue> actual = clueFinder.findCluesThatCanBeInserted(coords, dir);
+        List<ClueEntity> expected = new ArrayList<>(Arrays.asList(echo));
+        List<ClueEntity> actual = clueFinder.findCluesThatCanBeInserted(coords, dir);
 
         assertEquals(expected, actual);
     }
 
-    private Clue dummyClue(String answer) {
-        Clue clue = new Clue();
+    private ClueEntity dummyClue(String answer) {
+        ClueEntity clue = new ClueEntity();
         clue.setAnswer(answer);
         return clue;
     }

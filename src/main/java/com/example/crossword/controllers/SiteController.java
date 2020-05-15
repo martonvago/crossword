@@ -1,10 +1,10 @@
 package com.example.crossword.controllers;
 
 import com.example.crossword.controllers.api.ClueController;
-import com.example.crossword.exceptions.gridExceptions.InvalidLetterException;
-import com.example.crossword.models.Clue;
+import com.example.crossword.exceptions.crosswordManagerExceptions.InvalidLetterException;
+import com.example.crossword.entities.ClueEntity;
 import com.example.crossword.models.Grid;
-import com.example.crossword.services.crosswordMaker.CrosswordMaker;
+import com.example.crossword.services.crosswordManager.CrosswordInsertManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,19 +17,19 @@ public class SiteController {
 
     @GetMapping("/clue")
     public String addClueForm(Model model) {
-        model.addAttribute("clue", new Clue());
+        model.addAttribute("clue", new ClueEntity());
         return "redirect:add-clue.html";
     }
 
     @PostMapping("/clue")
-    public String addNewClue (@ModelAttribute Clue clue) {
+    public String addNewClue (@ModelAttribute ClueEntity clue) {
         clueController.postClue(clue);
         return "redirect:clue-submitted.html";
     }
 
     @GetMapping("/build-a-crossword")
     public String buildACrossword(Model model) {
-        Grid grid = new CrosswordMaker(5, 5).getGrid();
+        Grid grid = CrosswordInsertManager.NewCrossword(5, 5).getGrid();
         try {
             grid.getLetterSquares()[1][3].setLetter('A');
             grid.getLetterSquares()[2][3].setLetter('B');

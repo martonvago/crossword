@@ -1,6 +1,6 @@
 package com.example.crossword.services.crosswordManager.clue;
 
-import com.example.crossword.models.Clue;
+import com.example.crossword.entities.ClueEntity;
 import com.example.crossword.models.ClueDirection;
 import com.example.crossword.models.GridCoordinates;
 import com.example.crossword.repositories.ClueRepository;
@@ -25,10 +25,10 @@ public class ClueFinder {
         this.gridManager = gridManager;
     }
 
-    public List<Clue> findCluesThatCanBeInserted(GridCoordinates startCoords, ClueDirection dir) {
-        List<Clue> clues = new ArrayList<Clue>();
+    public List<ClueEntity> findCluesThatCanBeInserted(GridCoordinates startCoords, ClueDirection dir) {
+        List<ClueEntity> clues = new ArrayList<ClueEntity>();
 
-        for (Clue clue : clueRepository.findAll()) {
+        for (ClueEntity clue : clueRepository.findAll()) {
             if (gridManager.canInsertWord(clue.getAnswer(), startCoords, dir)) {
                 clues.add(clue);
             }

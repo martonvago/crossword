@@ -1,6 +1,12 @@
-package com.example.crossword.models;
+package com.example.crossword.entities;
 
-public class Clue {
+import javax.persistence.*;
+
+@Entity
+@Table(name= "clue")
+public class ClueEntity {
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
 
     private String hint;
@@ -14,6 +20,14 @@ public class Clue {
     private String author;
 
     private String difficulty;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getHint() {
         return hint;
